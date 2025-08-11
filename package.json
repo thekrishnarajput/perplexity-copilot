@@ -1,0 +1,89 @@
+{
+  "name": "perplexity-copilot",
+  "displayName": "Perplexity Copilot",
+  "description": "This perplexity copilot is an unofficial extension to utilize the feature of perplexity pro AI using the secret key.",
+  "publisher": "thekrishnarajput",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thekrishnarajput/perplexity-copilot.git"
+  },
+  "version": "0.1.0",
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onStartupFinished",
+    "onLanguage:python"
+  ],
+  "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -w",
+    "prepack": "npm run compile",
+    "package": "vsce package"
+  },
+  "author": "Mukesh Karn (Krishna)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.2.1",
+    "@types/vscode": "^1.75.0",
+    "eslint": "^9.33.0",
+    "typescript": "^5.9.2",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "eventsource": "^4.0.0",
+    "node-fetch": "^3.3.2"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "perplexity-copilot.setApiKey",
+        "title": "Perplexity: Set API Token"
+      },
+      {
+        "command": "perplexity-copilot.generateFromComment",
+        "title": "Perplexity: Generate Code from Comment"
+      },
+      {
+        "command": "perplexity-copilot.chooseModel",
+        "title": "Perplexity: Choose Model"
+      }
+    ],
+    "configuration": {
+      "title": "Perplexity Copilot",
+      "properties": {
+        "perplexity.model": {
+          "type": "string",
+          "default": "sonar-pro",
+          "description": "Default model to use for generation"
+        },
+        "perplexity.apiEndpoint": {
+          "type": "string",
+          "default": "https://api.perplexity.ai/chat/completions",
+          "description": "Perplexity API endpoint"
+        },
+        "perplexity.inlineEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable inline suggestions"
+        }
+      }
+    },
+    "views": {
+      "explorer": [
+        {
+          "icon": "",
+          "id": "perplexityChatView",
+          "name": "Perplexity Chat"
+        }
+      ]
+    }
+  }
+}
